@@ -19,7 +19,7 @@ function set_css(Array $css = []) {
 <?php
 function set_js(Array $js = []) {
     foreach($js as $j) { ?>
-        <script src="<?=base_url("assets/js/{$j}.js")?>"></script>
+        <script src="<?=base_url("assets/js/{$j}.js")?>" defer></script>
     <?php
     }
 }
@@ -43,6 +43,7 @@ function load_header(String $title = "Document", Array $css = [], Array $js = []
     <link rel="stylesheet" href="<?=base_url("assets/fontawesome/css/all.min.css")?>">
 
     <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="<?=base_url("assets/datatable/css/dataTables.dataTables.min.css")?>">
     
     <link rel="stylesheet" href="<?=base_url("assets/css/main.css")?>">
@@ -55,6 +56,8 @@ function load_header(String $title = "Document", Array $css = [], Array $js = []
 
     <!-- JQUERY -->
     <script src="<?=base_url("assets/jquery/jquery.min.js")?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.7/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <?=set_js($js);?>

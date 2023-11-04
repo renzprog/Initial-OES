@@ -1,7 +1,7 @@
 <?php 
 require "./template/head.php";
 
-load_header("Dashboard", ["dashboard","header"], ["main"]);
+load_header("Dashboard", ["dashboard","header"], ["dashboard"]);
 ?>
 
 <body>

@@ -2,7 +2,7 @@
 require_once "constants.php";
 function load_footer(array $js = [])
 { ?>
-
+    
     <footer class="d-flex justify-content-around gap-2">
         footer
     </footer>
