@@ -1,22 +1,26 @@
 <?php
 require "../db/conn.php";
 require "../template/constants.php";
+
 $sql = "";
 if(isset($_POST['id'])) {
     $id = $_POST['id'];
     $sql = "SELECT 
+            `tbf`.id as 'id',
             CASE
                 WHEN TRIM(CONCAT(`tbf`.firstname, ' ',`tbf`.lastname)) = '' THEN '--'
                 ELSE CONCAT(`tbf`.firstname, ' ',`tbf`.lastname)
             END as 'name',
             `tbf`.`lrn`,
-            CASE
-                WHEN TRIM(`tbf`.`strand`) < 1 THEN CONCAT(`tbf`.`gradelevel`, ' ',`tbf`.`track`)
-            ELSE CONCAT(`tbf`.`gradelevel`, '-',`tbf`.`strand`)
-            END as 'grd&str',
-            `tbf`.`sex`,
+            `tbf`.`strand` as 'strand',
+            `tbf`.`track` as 'track',
+            `tbf`.`gradelevel` as 'gradelevel',
+            CASE 
+                WHEN `tbf`.`sex` = 'F' THEN 'Female'
+                ELSE 'Male'
+            END as 'sex',
             `tbf`.`placeofbirth`,
-            `tbf`.`Phousenum` as 'addr'
+            CONCAT(`tbf`.Cbrgy, ' ', `tbf`.`Chousenum`, ' ', `tbf`.`Cstreet`, ' ', `tbf`.`Ccity`) as 'addr'
             FROM `tb_form` `tbf`
             WHERE `tbf`.id  = {$id}";
 } else {

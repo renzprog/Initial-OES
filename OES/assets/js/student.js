@@ -10,6 +10,7 @@ $(document).ready(()=>{
     
     
     loadData(base_url + "api/enrollees.php", $("#table"),table_options);
+    onSubmit();
 })
 
 async function loadData(url = null, element = null, table_options = null) {
@@ -45,11 +46,30 @@ function toggle_inputs() {
     $("#btn-edit").toggleClass("hide");
     $("#btn-save").toggleClass("hide");
     $("#btn-cancel").toggleClass("hide");
-    $("#form-body section > div input").toggleClass("hide");
+    $("#form-body input").toggleClass("hide");
+    $("#form-body section div div").toggleClass("hide");
     $("#form-body section > div span:nth-child(2)").toggleClass("hide");
 }
 
+function onSubmit() {
+    document.getElementById("form-container").addEventListener("submit", (e)=>{
+        e.preventDefault();
 
+        const form = new FormData(document.getElementById("form-container"));
+
+        fetch(base_url + "api/update_enrollee.php", {
+            method : "post",
+            body : form
+        })
+        .then(resp=>resp.json())
+        .then(data=>{
+            const result = data.result;
+            console.log(result);
+            alert(result.status)
+        })
+
+    });
+}
 
 function viewRecord(record_id){
     $("#view-students").addClass("hide");
@@ -68,24 +88,25 @@ function viewRecord(record_id){
             <section id="form-buttons">
                 <button type='button' id="btn-cancel" onclick="toggle_inputs()" class='hide'>Cancel</button>
                 <button type='button' id="btn-edit" onclick="toggle_inputs()">Edit</button>
-                <button id="btn-save" onclick="" class='hide'>Save</button>
+                <input type='submit' value='Save' name='save' id="btn-save" onclick="" class='hide'/>
             </section>
             
         </div>
 
         <div id="form-body">
-            
+            <input type='hidden' name='id' class='hide' value='${student['id']}'>
             <span>Basic Information</span>
             <section>
                 <div>
                     <span>LRN</span>
                     <span>${student['lrn']}</span>
-                    <input type='text' class='hide' value='${student['lrn']}'>
+                    <input type='text' name='lrn' class='hide' value='${student['lrn']}' placeholder='LRN'>
                 </div>
                 <div>
                     <span>Grade & Strand</span>
-                    <span>${student['grd&str']}</span>
-                    <input type='text' class='hide' value='${student['grd&str']}'>
+                    <span> ${student['gradelevel']} - ${(student['strand'] || student['track'])}</span>
+                    <input type='text' class='hide' name='gradelevel' value='${student['gradelevel']}' placeholder='Grade Level'>
+                    <input type='text' class='hide' name='${(student['strand'] ? 'strand' : 'track')}' value='${(student['strand'] || student['track'])}' placeholder='Track / Strand'>
                 </div>
             </section>
             
@@ -94,7 +115,19 @@ function viewRecord(record_id){
                 <div>
                     <span>Sex</span>
                     <span>${student['sex']}</span>
-                    <input type='text' class='hide' value='${student['sex']}'>
+                    <div class=' flex justify-center items-center gap-md hide'>
+                        <label for="male">
+                            Male
+                        </label>
+                        <input type='radio' id="male" class='hide' name='sex' value='M' ${(student['sex'] == "Male" ? "checked" : "")}>
+                    </div>
+                    <div class=' flex justify-center items-center gap-md hide'>
+                        <label for="female">
+                            Female
+                        </label>
+                        <input type='radio' id="female" class='hide' name='sex' value='F' ${(student['sex'] == "Female" ? "checked" : "")}>
+                    </div>
+                    
                 </div>
                 <div>
                     <span>Nationality</span>
@@ -114,7 +147,7 @@ function viewRecord(record_id){
                 <div>
                     <span>Address</span>
                     <span>${student['addr']}</span>
-                    <input type='text' class='hide' value='${student['addr']}'>
+                    <input type='text' class='hide' name='addr' value='${student['addr']}'>
                 </div>
             </section>
         </div>`;

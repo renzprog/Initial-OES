@@ -51,7 +51,7 @@ load_header("Student",["base","main","student"], ["student"]);
                 </table>
             </div>
 
-            <form id="form-container" class="hide"></form>
+            <form id="form-container" class="hide" method="post" ></form>
         </section>
         
     </main>

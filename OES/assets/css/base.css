@@ -17,9 +17,6 @@
     display: none !important;
 }
 
-.flex {
-    display: flex;
-}
 
 .w-full {
     width: 100%;
@@ -28,3 +25,21 @@
 .border-none{
     border : none !important;
 }
+
+/* FLEX */
+.flex {
+    display: flex;
+}
+
+.justify-center { 
+    justify-content: center !important;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-md {
+    gap: 8px;
+}
+
