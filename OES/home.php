@@ -25,7 +25,7 @@ load_header("Home", ["header","home"], [""]);
                     </a>
                 </span>
                 <span>
-                    <a href="course.php">
+                    <a href="course.html">
                         Strand Offerings
                     </a>
                 </span>
