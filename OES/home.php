@@ -1,10 +1,11 @@
 <?php
 require "./template/head.php";
-// unset($_SESSION["role"]);
+unset($_SESSION["role"]);
 load_header("Home", ["header","home"], [""]);
 ?>
 
 <body>
+    <link rel="stylesheet" href="css/home.css">
     <?php include "./includes/header.php"; ?>
     <main>
         <h1><?php
@@ -20,7 +21,7 @@ load_header("Home", ["header","home"], [""]);
             </h3>
             <div id="btn">
                 <span>
-                    <a href="" >
+                    <a href="requirements.html" >
                         Requirements
                     </a>
                 </span>

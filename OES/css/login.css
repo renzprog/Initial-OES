@@ -50,6 +50,12 @@ img{
 #two{
     width: 50%;
 }
+form >.icon{
+    position: relative;
+    size: 20px;
+    text-decoration: none;
+    color: black;
+}
 
 h1{
     font-size: 25px;
@@ -118,12 +124,15 @@ form  input[type="password"]{
     display: inline-block;
 }
 
-form > button{
-    background-color: #8d2826;
+form > a{
+    position: relative;
+    size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.icon{
+    font-size:20px;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-    border-color: transparent!important;
 }
 
 form > span#email,

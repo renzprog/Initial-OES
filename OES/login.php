@@ -8,6 +8,7 @@ require 'conn.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/login.css">
+    
 </head>
 <body>
     <main>
@@ -40,14 +41,13 @@ require 'conn.php';
                   LOGIN
                 </button>
             </form>
-            <button id="btn-fquestion">
-               <span>
-                 ?
-               </span> 
-            </button>
+            <a href="home.php" id="btn-fquestion">
+               <i class="fa fa-reply"></i>
+            </a>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
         </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
 <?php
 if(isset($_POST["submit"])){
    
